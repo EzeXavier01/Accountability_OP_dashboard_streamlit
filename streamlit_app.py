@@ -97,7 +97,7 @@ with tab_poll:
         fig.update_layout(
             title=f"When something goes wrong, my first thought is... "
                   f"({total} vote{'' if total == 1 else 's'})",
-            xaxis=dict(visible=False), yaxis=dict(autorange="reversed"),
+            xaxis=dict(visible=False), yaxis=dict(autorange="reversed", automargin=True, ticklabelstandoff=8),
         )
         st.plotly_chart(styled(fig, 280), width="stretch", theme=None)
         st.caption("Results refresh every 3 seconds.")
@@ -225,7 +225,7 @@ with tab_fb:
             hfig = go.Figure(go.Bar(x=habits.values, y=habits.index, orientation="h", marker_color=BLUE,
                                     text=habits.values.astype(int), textposition="auto"))
             hfig.update_layout(title="Habit people will start", xaxis=dict(visible=False),
-                               yaxis=dict(autorange="reversed"))
+                               yaxis=dict(autorange="reversed", automargin=True, ticklabelstandoff=8))
             st.plotly_chart(styled(hfig, 300), width="stretch", theme=None)
             words = Counter(w for c in fdf["comment"] for w in re.findall(r"[a-z']+", c.lower())
                             if len(w) > 2 and w not in STOP)
